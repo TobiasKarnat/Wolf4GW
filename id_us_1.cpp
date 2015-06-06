@@ -26,7 +26,6 @@
 //			window
 //
 
-#include "wl_def.h"
 
 #pragma	hdrstop
 
@@ -42,7 +41,7 @@
 //	Internal variables
 #define	ConfigVersion	1
 
-static	char		*ParmStrings[] = {"TEDLEVEL","NOWAIT",0};
+static	char		*ParmStrings_id_us_1[] = {"TEDLEVEL","NOWAIT",0};
 static	boolean		US_Started;
 
 		boolean		Button0,Button1,
@@ -86,7 +85,7 @@ US_Startup(void)
 	// Check for TED launching here
 	for (i = 1;i < __argc;i++)
 	{
-		n = US_CheckParm(__argv[i],ParmStrings);
+		n = US_CheckParm(__argv[i],ParmStrings_id_us_1);
 		switch(n)
 		{
 #ifdef DEBUGKEYS

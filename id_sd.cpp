@@ -30,7 +30,6 @@
 
 #include <dos.h>
 
-#include "wl_def.h"
 
 #pragma hdrstop
 
@@ -77,7 +76,7 @@ static void alOutInIRQ(byte n,byte b);
 static  boolean                 SD_Started;
                 boolean                 nextsoundpos;
                 longword                TimerDivisor,TimerCount;
-static  char                    *ParmStrings[] =
+static  char                    *ParmStrings_id_sd[] =
                                                 {
                                                         "noal",
                                                         "nosb",
@@ -1946,7 +1945,7 @@ SD_Startup(void)
 #ifndef _MUSE_
         for (i = 1;i < __argc;i++)
         {
-                switch (US_CheckParm(__argv[i],ParmStrings))
+                switch (US_CheckParm(__argv[i],ParmStrings_id_sd))
                 {
                 case 0:                                         // No AdLib detection
                         alNoCheck = true;

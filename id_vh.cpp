@@ -1,6 +1,5 @@
 // ID_VH.C
 
-#include "wl_def.h"
 
 #define	SCREENWIDTH		80
 #define CHARWIDTH		2

@@ -1,6 +1,5 @@
 // WL_MAIN.C
 
-#include "WL_DEF.H"
 #pragma hdrstop
 
 
@@ -1407,7 +1406,7 @@ void Quit (char *error)
 =====================
 */
 
-static  char *ParmStrings[] = {"baby","easy","normal","hard",""};
+static  char *ParmStrings_wl_main[] = {"baby","easy","normal","hard",""};
 
 void    DemoLoop (void)
 {
@@ -1424,7 +1423,7 @@ void    DemoLoop (void)
 
                 for (i = 1;i < __argc;i++)
                 {
-                        if ( (level = US_CheckParm(__argv[i],ParmStrings)) != -1)
+                        if ( (level = US_CheckParm(__argv[i],ParmStrings_wl_main)) != -1)
                         {
                          gamestate.difficulty=level;
                          break;

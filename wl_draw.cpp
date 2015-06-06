@@ -1,6 +1,5 @@
 // WL_DRAW.C
 
-#include "WL_DEF.H"
 #include <DOS.H>
 #pragma hdrstop
 

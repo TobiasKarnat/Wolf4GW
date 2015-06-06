@@ -1,7 +1,6 @@
 // WL_PLAY.C
 
 #include <i86.h>
-#include "WL_DEF.H"
 #pragma hdrstop
 
 extern byte scanbuffer[16];

@@ -14,7 +14,6 @@ loaded into the data segment
 =============================================================================
 */
 
-#include "wl_def.h"
 #pragma hdrstop
 
 #pragma warn -pro

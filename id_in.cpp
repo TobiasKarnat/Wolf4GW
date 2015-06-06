@@ -19,7 +19,6 @@
 
 #include <dos.h>
 #include <i86.h>
-#include "wl_def.h"
 
 #define	KeyInt		9	// The keyboard ISR number
 
@@ -122,7 +121,7 @@ static	Direction	DirTable[] =		// Quick lookup for total direction
 
 static	void (__interrupt *OldKeyVect)(void);
 
-static	char			*ParmStrings[] = {"nojoys","nomouse",0};
+static	char			*ParmStrings_id_in[] = {"nojoys","nomouse",0};
 
 boolean NumLockPanic=false;
 
@@ -601,7 +600,7 @@ IN_Startup(void)
 	checkmouse = true;
 	for (i = 1;i < __argc;i++)
 	{
-		switch (US_CheckParm(__argv[i],ParmStrings))
+		switch (US_CheckParm(__argv[i],ParmStrings_id_in))
 		{
 		case 0:
 			checkjoys = false;

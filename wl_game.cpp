@@ -1,7 +1,6 @@
 // WL_GAME.C
 
 #include <math.h>
-#include "WL_DEF.H"
 #pragma hdrstop
 
 #ifdef MYPROFILE
