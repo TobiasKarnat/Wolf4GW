@@ -893,6 +893,7 @@ extern  boolean         tedlevel;
 
 void            NewGame (int difficulty,int episode);
 
+
 extern        boolean         MS_CheckParm (char *string);
 
 void            Quit (char *error);
