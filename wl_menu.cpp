@@ -297,6 +297,9 @@ char SaveGameNames[10][32],SaveName[13]="SAVEGAM?.";
 //
 ////////////////////////////////////////////////////////////////////
 
+/* Jason Stevens: Open Watcom V2 now treats warning W737,
+   implicit conversion of pointers to integral types of same size, as an error.
+
 #pragma warning 737 9
 static byte
                                         *ScanNames[] =          // Scan code names with single chars
@@ -324,7 +327,7 @@ static byte *ExtScanNames[] =   // Names corresponding to ExtScanCodes
         "PrtSc","Alt","Home","PgUp","End","PgDn","Ins","Del","NumLk","Up",
         "Down","Left","Right",""
                                         };
-
+*/
 
 ////////////////////////////////////////////////////////////////////
 //
@@ -3846,11 +3849,17 @@ IN_GetScanName(ScanCode scan)
         byte            **p;
         ScanCode        *s;
 
+/* Jason Stevens: Open Watcom V2 now treats warning W737,
+   implicit conversion of pointers to integral types of same size, as an error.
+
         for (s = ExtScanCodes,p = ExtScanNames;*s;p++,s++)
                 if (*s == scan)
                         return(*p);
 
         return(ScanNames[scan]);
+*/
+
+        return 0;
 }
 
 
