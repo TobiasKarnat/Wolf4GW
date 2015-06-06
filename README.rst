@@ -3,7 +3,7 @@ Wolfenstein 3D for DOS/4GW
 
 | The source of Wolf3D has been converted to run as an 32-bit DOS executable.
 | Free pushwalls have been added as an feature.
-| Author: *Chaos-Software* <http://homepage.o2mail.de/mkroll>
+| Author: *Moritz Kroll / Chris Chokan* <http://homepage.o2mail.de/mkroll>
 |
 | The source has been patched to compile with Open Watcom V2.
 | Author: *Jason Stevens* <http://virtuallyfun.superglobalmegacorp.com>
@@ -17,7 +17,7 @@ This version will compile under Open Watcom C/C++ V2.0 beta (April 2015).
 
 Tobias Karnat
 
-| Changelog from Chaos-Software:
+| Changelog:
 - 19.03.06
     | Now the pushwall will stop, if the player occupies a tile in the way of the pushwall.
 
