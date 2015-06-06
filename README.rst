@@ -1,17 +1,33 @@
-Wolfenstein 3D
-==============
+Wolfenstein 3D for DOS/4GW
+==========================
 
-The original source release was made using the ``DEICE.EXE``
-installer (DeIce) in the root directory.  (Basically a way to
-split self-extracting zip files over multiple floppy disks.)
-After execution, that installer will create the contents of
-the ``WOLFSRC`` directory.  In the "installed" directory, the
-the ``README.TXT``, ``RELEASE.TXT``, and ``LICENCE.DOC`` reside
-in the ``README`` directory.  They are duplicated below.
+| The source of Wolf3D has been converted to run as an 32-bit DOS executable.
+| Free pushwalls have been added as an feature.
+| Author: *Chaos-Software* <http://homepage.o2mail.de/mkroll>
+|
+| The source has been patched to compile with Open Watcom V2.
+| Author: *Jason Stevens* <http://virtuallyfun.superglobalmegacorp.com>
+|
+| Advanced compiler and linker flags have been choosen and tested.
+| Unity build for interprocedural optimization has been enabled.
+| DOS/4GW has been replaced by DOS/32A 9.1.2 (April 20, 2006).
+| Author: *Tobias Karnat*
+|
+This version will compile under Open Watcom C/C++ V2.0 beta (April 2015).
 
-Travis "Ash" Bradshaw <travis.bradshaw@idsoftware.com>
+Tobias Karnat
 
-February 6, 2012
+| Changelog from Chaos-Software:
+- 19.03.06
+    | Now the pushwall will stop, if the player occupies a tile in the way of the pushwall.
+
+- 17.03.06
+    | Finished Wolf4GW Free pushwalls package with source and executable became released.
+    | The Wolf4GW version used is the one with Chris' many patches (a big thanks to Chris ;D)
+    | The "Free pushwalls" feature contains some bugs I wasn't able to handle.
+
+- 19.09.05
+    | Wolf4GW seems to be nearly finished. Then memory won't be a problem anymore ;D
 
 RELEASE.TXT
 -----------
@@ -71,16 +87,6 @@ RELEASE.TXT
   John Carmack
   Technical Director
   Id Software
-
-README.TXT
-----------
-
-NOTES:
-
-This version will compile under BORLAND C++ 3.0/3.1 and compiled perfectly
-before it was uploaded. 
-
-Please do not send your questions to id Software.
 
 LICENCE.DOC
 -----------
@@ -214,5 +220,4 @@ LICENCE.DOC
   STATEMENT OF THE RIGHTS AND LIABILITIES OF THE PARTIES.  THIS AGREEMENT 
   SUPERSEDES ALL PRIOR ORAL AGREEMENTS, PROPOSALS OR UNDERSTANDINGS, AND 
   ANY OTHER COMMUNICATIONS BETWEEN ID AND YOU RELATING TO THE SUBJECT MATTER 
-  OF THIS AGREEMENT 
-  
+  OF THIS AGREEMENT   
