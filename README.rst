@@ -6,26 +6,12 @@ Wolfenstein 3D for DOS/4GW
 | Author: *Moritz Kroll / Chris Chokan* <http://homepage.o2mail.de/mkroll>
 |
 | The source has been patched to compile with Open Watcom V2.
-| Advanced compiler and linker flags have been chosen and tested.
+| Advanced compiler and linker flags have been chosen and verified.
 | Unity build for interprocedural optimization has been enabled.
 | DOS/4GW has been replaced by DOS/32A 9.1.2 (April 20, 2006).
 | Author: *Tobias Karnat*
 |
 This version will compile under Open Watcom C/C++ V2.0 beta (April 2015).
-
-Tobias Karnat
-
-| Changelog:
-- 19.03.06
-    | Now the pushwall will stop, if the player occupies a tile in the way of the pushwall.
-
-- 17.03.06
-    | Finished Wolf4GW Free pushwalls package with source and executable became released.
-    | The Wolf4GW version used is the one with Chris' many patches (a big thanks to Chris ;D)
-    | The "Free pushwalls" feature contains some bugs I wasn't able to handle.
-
-- 19.09.05
-    | Wolf4GW seems to be nearly finished. Then memory won't be a problem anymore ;D
 
 RELEASE.TXT
 -----------
