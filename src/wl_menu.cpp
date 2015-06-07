@@ -296,8 +296,7 @@ char SaveGameNames[10][32],SaveName[13]="SAVEGAM?.";
 //
 ////////////////////////////////////////////////////////////////////
 
-#pragma warning 737 9
-static byte
+static char
                                         *ScanNames[] =          // Scan code names with single chars
                                         {
         "?","?","1","2","3","4","5","6","7","8","9","0","-","+","?","?",
@@ -309,14 +308,14 @@ static byte
         "?","?","?","?","?","?","?","?","?","?","?","?","?","?","?","?",
         "?","?","?","?","?","?","?","?","?","?","?","?","?","?","?","?"
                                         };      // DEBUG - consolidate these
-static byte ExtScanCodes[] =    // Scan codes with >1 char names
+static ScanCode ExtScanCodes[] =    // Scan codes with >1 char names
                                         {
         1,0xe,0xf,0x1d,0x2a,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,
         0x3f,0x40,0x41,0x42,0x43,0x44,0x57,0x59,0x46,0x1c,0x36,
         0x37,0x38,0x47,0x49,0x4f,0x51,0x52,0x53,0x45,0x48,
         0x50,0x4b,0x4d,0x00
                                         };
-static byte *ExtScanNames[] =   // Names corresponding to ExtScanCodes
+static char *ExtScanNames[] =   // Names corresponding to ExtScanCodes
                                         {
         "Esc","BkSp","Tab","Ctrl","LShft","Space","CapsLk","F1","F2","F3","F4",
         "F5","F6","F7","F8","F9","F10","F11","F12","ScrlLk","Enter","RShft",
@@ -2713,7 +2712,7 @@ void DrawCustJoy(int hilight)
 void PrintCustKeybd(int i)
 {
         PrintX=CST_START+CST_SPC*i;
-        US_Print((char *)IN_GetScanName(buttonscan[order[i]]));
+        US_Print(IN_GetScanName(buttonscan[order[i]]));
 }
 
 void DrawCustKeybd(int hilight)
@@ -2734,7 +2733,7 @@ void DrawCustKeybd(int hilight)
 void PrintCustKeys(int i)
 {
         PrintX=CST_START+CST_SPC*i;
-        US_Print((char *)IN_GetScanName(dirscan[moveorder[i]]));
+        US_Print(IN_GetScanName(dirscan[moveorder[i]]));
 }
 
 void DrawCustKeys(int hilight)
@@ -3839,10 +3838,10 @@ void FreeMusic (void)
 //              specified scan code
 //
 ///////////////////////////////////////////////////////////////////////////
-byte *
+char *
 IN_GetScanName(ScanCode scan)
 {
-        byte            **p;
+        char            **p;
         ScanCode        *s;
 
         for (s = ExtScanCodes,p = ExtScanNames;*s;p++,s++)

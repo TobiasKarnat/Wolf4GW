@@ -199,7 +199,7 @@ extern	boolean		IN_UserInput(longword delay);
 extern	char		IN_WaitForASCII(void);
 extern	ScanCode	IN_WaitForKey(void);
 extern	word		IN_GetJoyButtonsDB(word joy);
-extern	byte		*IN_GetScanName(ScanCode);
+extern	char		*IN_GetScanName(ScanCode);
 
 
 byte	IN_MouseButtons (void);
