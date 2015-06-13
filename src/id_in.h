@@ -160,21 +160,21 @@ typedef	struct		{
 									joyMultXH,joyMultYH;
 					} JoystickDef;
 // Global variables
-extern	boolean		Keyboard[],
-					JoysPresent[];
-extern	boolean		MousePresent;
-extern	boolean		Paused;
-extern	char		LastASCII;
-extern	ScanCode	LastScan;
-extern	KeyboardDef	KbdDefs;
-extern	JoystickDef	JoyDefs[];
-extern	ControlType	Controls[MaxPlayers];
+extern	boolean			Keyboard[],
+				JoysPresent[];
+extern	boolean			MousePresent;
+extern	boolean			Paused;
+extern	char			LastASCII;
+extern	volatile ScanCode	LastScan;
+extern	KeyboardDef		KbdDefs;
+extern	JoystickDef		JoyDefs[];
+extern	ControlType		Controls[MaxPlayers];
 
-extern	Demo		DemoMode;
-extern	byte 		*DemoBuffer; // _seg
-extern	word		DemoOffset,DemoSize;
+extern	Demo			DemoMode;
+extern	byte 			*DemoBuffer; // _seg
+extern	word			DemoOffset,DemoSize;
 
-extern union REGS regs;
+extern union			REGS regs;
 
 
 // Function prototypes

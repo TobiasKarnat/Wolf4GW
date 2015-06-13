@@ -48,20 +48,20 @@ union REGS regs;
 
 
 // 	Global variables
-		boolean		Keyboard[NumCodes];
-		boolean		Paused;
-		char		LastASCII;
-		ScanCode	LastScan;
+		boolean			Keyboard[NumCodes];
+		boolean			Paused;
+		char			LastASCII;
+		volatile ScanCode	LastScan;
 
-		KeyboardDef	KbdDefs = {0x1d,0x38,0x47,0x48,0x49,0x4b,0x4d,0x4f,0x50,0x51};
-		JoystickDef	JoyDefs[MaxJoys];
-		ControlType	Controls[MaxPlayers];
+		KeyboardDef		KbdDefs = {0x1d,0x38,0x47,0x48,0x49,0x4b,0x4d,0x4f,0x50,0x51};
+		JoystickDef		JoyDefs[MaxJoys];
+		ControlType		Controls[MaxPlayers];
 
-		longword	MouseDownCount;
+		longword		MouseDownCount;
 
-		Demo		DemoMode = demo_Off;
-		byte 		*DemoBuffer;	// _seg
-		word		DemoOffset,DemoSize;
+		Demo			DemoMode = demo_Off;
+		byte 			*DemoBuffer;	// _seg
+		word			DemoOffset,DemoSize;
 
 /*
 =============================================================================
