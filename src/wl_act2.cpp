@@ -2,7 +2,6 @@
 
 #include <stdio.h>
 #include <math.h>
-#pragma hdrstop
 
 /*
 =============================================================================
@@ -35,10 +34,6 @@
 
 =============================================================================
 */
-
-
-dirtype dirtable[9] = {northwest,north,northeast,west,nodir,east,
-        southwest,south,southeast};
 
 short starthitpoints[4][NUMENEMIES] =
          //
@@ -1395,8 +1390,6 @@ statetype s_willchase3  = {false,SPR_WILL_W3,10,(statefunc)T_Will,NULL,&s_willch
 statetype s_willchase3s = {false,SPR_WILL_W3,3,NULL,NULL,&s_willchase4};
 statetype s_willchase4  = {false,SPR_WILL_W4,8,(statefunc)T_Will,NULL,&s_willchase1};
 
-statetype s_willdeathcam        = {false,SPR_WILL_W1,1,NULL,NULL,&s_willdie1};
-
 statetype s_willdie1    = {false,SPR_WILL_W1,1,NULL,(statefunc)A_DeathScream,&s_willdie2};
 statetype s_willdie2    = {false,SPR_WILL_W1,10,NULL,NULL,&s_willdie3};
 statetype s_willdie3    = {false,SPR_WILL_DIE1,10,NULL,NULL,&s_willdie4};
@@ -1569,8 +1562,6 @@ statetype s_deathchase2         = {false,SPR_DEATH_W2,8,(statefunc)T_Will,NULL,&
 statetype s_deathchase3         = {false,SPR_DEATH_W3,10,(statefunc)T_Will,NULL,&s_deathchase3s};
 statetype s_deathchase3s        = {false,SPR_DEATH_W3,3,NULL,NULL,&s_deathchase4};
 statetype s_deathchase4         = {false,SPR_DEATH_W4,8,(statefunc)T_Will,NULL,&s_deathchase1};
-
-statetype s_deathdeathcam       = {false,SPR_DEATH_W1,1,NULL,NULL,&s_deathdie1};
 
 statetype s_deathdie1   = {false,SPR_DEATH_W1,1,NULL,(statefunc)A_DeathScream,&s_deathdie2};
 statetype s_deathdie2   = {false,SPR_DEATH_W1,10,NULL,NULL,&s_deathdie3};
@@ -1768,13 +1759,11 @@ statetype s_spark3      = {false,SPR_SPARK3,6,(statefunc)T_Projectile,NULL,&s_sp
 statetype s_spark4      = {false,SPR_SPARK4,6,(statefunc)T_Projectile,NULL,&s_spark1};
 
 
-#pragma argsused
 void A_Slurpie (objtype *)
 {
  SD_PlaySound(SLURPIESND);
 }
 
-#pragma argsused
 void A_Breathing (objtype *)
 {
  SD_PlaySound(ANGELTIREDSND);
@@ -1810,7 +1799,6 @@ void SpawnAngel (int tilex, int tiley)
 =================
 */
 
-#pragma argsused
 void A_Victory (objtype *)
 {
         playstate = ex_victorious;

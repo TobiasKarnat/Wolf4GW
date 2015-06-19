@@ -42,7 +42,6 @@
 //
 boolean			MousePresent;
 boolean			JoysPresent[MaxJoys];
-boolean			JoyPadPresent;
 
 union REGS regs;
 
@@ -56,8 +55,6 @@ union REGS regs;
 		KeyboardDef		KbdDefs = {0x1d,0x38,0x47,0x48,0x49,0x4b,0x4d,0x4f,0x50,0x51};
 		JoystickDef		JoyDefs[MaxJoys];
 		ControlType		Controls[MaxPlayers];
-
-		longword		MouseDownCount;
 
 		Demo			DemoMode = demo_Off;
 		byte 			*DemoBuffer;	// _seg
@@ -411,29 +408,6 @@ INL_GetJoyButtons(word joy)
 
 ///////////////////////////////////////////////////////////////////////////
 //
-//	IN_GetJoyButtonsDB() - Returns the de-bounced button status of the
-//		specified joystick
-//
-///////////////////////////////////////////////////////////////////////////
-word
-IN_GetJoyButtonsDB(word joy)
-{
-	longword	lasttime;
-	word		result1,result2;
-
-	do
-	{
-		result1 = INL_GetJoyButtons(joy);
-		lasttime = TimeCount;
-		while (TimeCount == lasttime)
-			;
-		result2 = INL_GetJoyButtons(joy);
-	} while (result1 != result2);
-	return(result1);
-}
-
-///////////////////////////////////////////////////////////////////////////
-//
 //	INL_StartKbd() - Sets up my keyboard stuff for use
 //
 ///////////////////////////////////////////////////////////////////////////
@@ -622,25 +596,6 @@ IN_Startup(void)
 
 ///////////////////////////////////////////////////////////////////////////
 //
-//	IN_Default() - Sets up default conditions for the Input Mgr
-//
-///////////////////////////////////////////////////////////////////////////
-void
-IN_Default(boolean gotit,ControlType in)
-{
-	if
-	(
-		(!gotit)
-	|| 	((in == ctrl_Joystick1) && !JoysPresent[0])
-	|| 	((in == ctrl_Joystick2) && !JoysPresent[1])
-	|| 	((in == ctrl_Mouse) && !MousePresent)
-	)
-		in = ctrl_Keyboard1;
-	IN_SetControlType(0,in);
-}
-
-///////////////////////////////////////////////////////////////////////////
-//
 //	IN_Shutdown() - Shuts down the Input Mgr
 //
 ///////////////////////////////////////////////////////////////////////////
@@ -799,53 +754,6 @@ IN_ReadControl(int player,ControlInfo *info)
 			DemoBuffer[DemoOffset + 1] = dbyte;
 		}
 	}
-}
-
-///////////////////////////////////////////////////////////////////////////
-//
-//	IN_SetControlType() - Sets the control type to be used by the specified
-//		player
-//
-///////////////////////////////////////////////////////////////////////////
-void
-IN_SetControlType(int player,ControlType type)
-{
-	// DEBUG - check that requested type is present?
-	Controls[player] = type;
-}
-
-///////////////////////////////////////////////////////////////////////////
-//
-//	IN_WaitForKey() - Waits for a scan code, then clears LastScan and
-//		returns the scan code
-//
-///////////////////////////////////////////////////////////////////////////
-ScanCode
-IN_WaitForKey(void)
-{
-	ScanCode	result;
-
-	while ((result = LastScan)==0)
-		;
-	LastScan = 0;
-	return(result);
-}
-
-///////////////////////////////////////////////////////////////////////////
-//
-//	IN_WaitForASCII() - Waits for an ASCII char, then clears LastASCII and
-//		returns the ASCII value
-//
-///////////////////////////////////////////////////////////////////////////
-char
-IN_WaitForASCII(void)
-{
-	char		result;
-
-	while ((result = LastASCII)==0)
-		;
-	LastASCII = '\0';
-	return(result);
 }
 
 ///////////////////////////////////////////////////////////////////////////

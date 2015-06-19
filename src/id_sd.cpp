@@ -31,8 +31,6 @@
 #include <dos.h>
 
 
-#pragma hdrstop
-
 #ifdef  nil
 #undef  nil
 #endif
@@ -122,7 +120,6 @@ static  byte                                    sbpOldFMMix,sbpOldVOCMix;
 
 //      SoundSource variables
                 boolean                         ssNoCheck;
-                boolean                         ssActive;
                 word                            ssControl,ssStatus,ssData;
                 byte                            ssOn,ssOff;
                 volatile byte           *ssSample;
@@ -168,9 +165,6 @@ int extreme=0;
 volatile boolean pcindicate;
 
 //volatile boolean deactivateSoundHandler=false;
-
-boolean isSBSamplePlaying() { return sbSamplePlaying; }
-byte *getSBNextSegPtr() { return (byte *) sbNextSegPtr; }
 
 int lastsoundstarted=-1;
 int lastdigiwhich=-1;

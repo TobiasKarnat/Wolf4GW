@@ -65,15 +65,10 @@ extern	boolean		ingame,		// Set by game code if a game is in progress
 					loadedgame,	// Set if the current game was loaded
 					NoWait,
 					HighScoresDirty;
-extern	char		*abortprogram;	// Set to error msg if program is dying
 extern	GameDiff	restartgame;	// Normally gd_Continue, else starts game
 extern	word		PrintX,PrintY;	// Current printing location in the window
 extern	word		WindowX,WindowY,// Current location of window
 					WindowW,WindowH;// Current size of window
-
-extern	boolean		Button0,Button1,
-					CursorBad;
-extern	int			CursorX,CursorY;
 
 extern	void		(*USL_MeasureString)(char *,word *,word *);
 extern void				(*USL_DrawString)(char *);
@@ -96,12 +91,7 @@ void				US_TextScreen(void),
 				US_UpdateTextScreen(void),
 				US_FinishTextScreen(void);
 void				US_DrawWindow(word x,word y,word w,word h);
-void				US_CenterWindow(word,word);
-void				US_SaveWindow(WindowRec *win),
-				US_RestoreWindow(WindowRec *win);
 void 				US_ClearWindow(void);
-void				US_SetPrintRoutines(void (*measure)(char *,word *,word *),
-									void (*print)(char *));
 void				US_PrintCentered(char *s),
 				US_CPrint(char *s),
 				US_CPrintLine(char *s),

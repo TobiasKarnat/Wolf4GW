@@ -904,9 +904,7 @@ boolean         SaveTheGame(int file,int x,int y);
 void            ShowViewSize (int width);
 void            ShutdownId (void);
 
-/*extern        boolean         nospr;
-extern  boolean         IsA386;
-
+/*
 extern  byte far        *scalermemory;
 
 extern  unsigned        viewangles;

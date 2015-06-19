@@ -14,11 +14,6 @@ loaded into the data segment
 =============================================================================
 */
 
-#pragma hdrstop
-
-#pragma warn -pro
-#pragma warn -use
-
 #define THREEBYTEGRSTARTS
 
 /*
@@ -59,8 +54,6 @@ word *mapsegs[MAPPLANES];
 maptype *mapheaderseg[NUMMAPS];
 byte *audiosegs[NUMSNDCHUNKS];
 byte *grsegs[NUMCHUNKS];
-
-byte grneeded[NUMCHUNKS];
 
 word RLEWtag;
 
@@ -160,35 +153,6 @@ void CAL_GetGrChunkLength (int chunk)
         read(grhandle,&chunkexplen,sizeof(chunkexplen));
         chunkcomplen = GRFILEPOS(chunk+1)-GRFILEPOS(chunk)-4;
 }
-
-/*
-==========================
-=
-= CA_ReadFile
-=
-= Reads a file into an allready allocated buffer
-=
-==========================
-*/
-
-boolean CA_ReadFile (char *filename, memptr *ptr)
-{
-        int handle;
-        long size;
-
-        if ((handle = open(filename,O_RDONLY | O_BINARY, S_IREAD)) == -1)
-                return false;
-
-        size = filelength (handle);
-        if (!read (handle,*ptr,size))
-        {
-                close (handle);
-                return false;
-        }
-        close (handle);
-        return true;
-}
-
 
 /*
 ==========================
@@ -428,62 +392,6 @@ void CAL_CarmackExpand (word *source, word *dest, int length)
                 }
         }
 }
-
-/*
-======================
-=
-= CA_RLEWcompress
-=
-======================
-*/
-
-long CA_RLEWCompress (word *source, long length, word *dest, word rlewtag)
-{
-  long complength;
-  word value,count;
-  unsigned i;
-  word *start,*end;
-
-  start = dest;
-
-  end = source + (length+1)/2;
-
-//
-// compress it
-//
-  do
-  {
-        count = 1;
-        value = *source++;
-        while (*source == value && source<end)
-        {
-          count++;
-          source++;
-        }
-        if (count>3 || value == rlewtag)
-        {
-    //
-    // send a tag / count / value string
-    //
-      *dest++ = rlewtag;
-      *dest++ = count;
-      *dest++ = value;
-    }
-    else
-    {
-    //
-    // send word without compressing
-    //
-      for (i=1;i<=count;i++)
-                        *dest++ = value;
-        }
-
-  } while (source<end);
-
-  complength = 2*(dest-start);
-  return complength;
-}
-
 
 /*
 ======================

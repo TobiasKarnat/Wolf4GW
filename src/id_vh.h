@@ -71,7 +71,6 @@ int	 VW_MarkUpdateBlock (int x1, int y1, int x2, int y2);
 void VWB_DrawPropString	 (char *string);
 
 void VWB_DrawTile8 (int x, int y, int tile);
-void VWB_DrawTile8M (int x, int y, int tile);
 void VWB_DrawTile16 (int x, int y, int tile);
 void VWB_DrawTile16M (int x, int y, int tile);
 void VWB_DrawPic (int x, int y, int chunknum);

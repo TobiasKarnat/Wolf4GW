@@ -1,7 +1,5 @@
 // WL_INTER.C
 
-#pragma hdrstop
-
 LRstruct LevelRatios[LRpack];
 
 void Write(int x,int y,char *string);

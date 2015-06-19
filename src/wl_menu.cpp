@@ -4,7 +4,6 @@
 // by John Romero (C) 1992 Id Software, Inc.
 //
 ////////////////////////////////////////////////////////////////////
-#pragma hdrstop
 
 extern int lastgamemusicoffset;
 
@@ -59,7 +58,6 @@ CP_iteminfo
         NewEitems={NE_X,NE_Y,11,0,88},
         NewItems={NM_X,NM_Y,4,2,24};
 
-#pragma warn -sus
 CP_itemtype MainMenu[]=
 {
 #ifdef JAPAN
@@ -149,8 +147,6 @@ CP_itemtype CtlMenu[]=
         {1,STR_CUSTOM,CustomControls}
 #endif
 };
-
-#pragma warn +sus
 
 #ifndef SPEAR
 CP_itemtype NewEmenu[]=
@@ -516,12 +512,10 @@ void US_ControlPanel(byte scancode)
         //
         if (startgame || loadedgame)
         {
-                #pragma warn -sus
                 MainMenu[viewscores].routine = NULL;
                 #ifndef JAPAN
                 strcpy(MainMenu[viewscores].string,STR_EG);
                 #endif
-                #pragma warn +sus
         }
 
         // RETURN/START GAME EXECUTION
@@ -903,13 +897,11 @@ int CP_EndGame(int)
         pickquick = gamestate.lives = 0;
         playstate = ex_died;
 
-        #pragma warn -sus
         MainMenu[savegame].active = 0;
         MainMenu[viewscores].routine=CP_ViewScores;
         #ifndef JAPAN
         strcpy(MainMenu[viewscores].string,STR_VS);
         #endif
-        #pragma warn +sus
 
         return 1;
 }

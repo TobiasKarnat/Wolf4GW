@@ -90,7 +90,6 @@ extern	unsigned linewidth;
 //extern	unsigned ylookup[MAXSCANLINES];
 
 extern	boolean		screenfaded;
-extern	unsigned bordercolor;
 
 //===========================================================================
 
@@ -208,8 +207,6 @@ void VL_SetTextMode (void);
 void VL_Shutdown (void);
 
 void VL_FillPalette (int red, int green, int blue);
-void VL_SetColor	(int color, int red, int green, int blue);
-void VL_GetColor	(int color, int *red, int *green, int *blue);
 void VL_SetPalette (byte *palette);
 void VL_GetPalette (byte *palette);
 void VL_FadeOut (int start, int end, int red, int green, int blue, int steps);

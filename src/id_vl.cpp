@@ -4,7 +4,6 @@
 #include <mem.h>
 #include <string.h>
 #include <conio.h>
-#pragma hdrstop
 
 //
 // SC_INDEX is expected to stay at SC_MAPMASK for proper operation
@@ -16,7 +15,6 @@ byte *vdisp=(byte *)0xa0000;
 unsigned linewidth=80;
 
 boolean		screenfaded;
-unsigned bordercolor;
 
 byte		palette1[256][3], palette2[256][3];
 
@@ -141,42 +139,6 @@ void VL_FillPalette (int red, int green, int blue)
 		outportb (PEL_DATA,green);
 		outportb (PEL_DATA,blue);
 	}
-}
-
-//===========================================================================
-
-/*
-=================
-=
-= VL_SetColor
-=
-=================
-*/
-
-void VL_SetColor	(int color, int red, int green, int blue)
-{
-	outportb (PEL_WRITE_ADR,color);
-	outportb (PEL_DATA,red);
-	outportb (PEL_DATA,green);
-	outportb (PEL_DATA,blue);
-}
-
-//===========================================================================
-
-/*
-=================
-=
-= VL_GetColor
-=
-=================
-*/
-
-void VL_GetColor	(int color, int *red, int *green, int *blue)
-{
-	outportb (PEL_READ_ADR,color);
-	*red = inportb (PEL_DATA);
-	*green = inportb (PEL_DATA);
-	*blue = inportb (PEL_DATA);
 }
 
 //===========================================================================

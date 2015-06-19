@@ -32,8 +32,6 @@ extern  maptype *mapheaderseg[NUMMAPS];
 extern  byte *audiosegs[NUMSNDCHUNKS];
 extern  byte *grsegs[NUMCHUNKS];
 
-extern  byte            grneeded[NUMCHUNKS];
-
 extern  char            *titleptr[8];
 
 extern  char            extension[5];
@@ -52,11 +50,8 @@ extern long      *audiostarts;  // array of offsets in audio / audiot
 
 //#define CA_FarRead(handle,dest,length) (read(handle,dest,length)==length)
 //#define CA_FarWrite(handle,source,length) (write(handle,source,length)==length)
-boolean CA_ReadFile (char *filename, memptr *ptr);
 boolean CA_LoadFile (char *filename, memptr *ptr);
 boolean CA_WriteFile (char *filename, void *ptr, long length);
-
-long CA_RLEWCompress (word *source, long length, word *dest, word rlewtag);
 
 void CA_RLEWexpand (word *source, word *dest,long length, word rlewtag);
 

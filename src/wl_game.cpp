@@ -1,7 +1,6 @@
 // WL_GAME.C
 
 #include <math.h>
-#pragma hdrstop
 
 #ifdef MYPROFILE
 #include <TIME.H>
@@ -1425,12 +1424,10 @@ startplayloop:
 
                                 CheckHighScore (gamestate.score,gamestate.mapon+1);
 
-                                #pragma warn -sus
                                 #ifndef JAPAN
                                 _fstrcpy(MainMenu[viewscores].string,STR_VS);
                                 #endif
                                 MainMenu[viewscores].routine = CP_ViewScores;
-                                #pragma warn +sus
 
                                 return;
                         }
@@ -1447,12 +1444,10 @@ startplayloop:
 
                                 CheckHighScore (gamestate.score,gamestate.mapon+1);
 
-                                #pragma warn -sus
                                 #ifndef JAPAN
                                 _fstrcpy(MainMenu[viewscores].string,STR_VS);
                                 #endif
                                 MainMenu[viewscores].routine = CP_ViewScores;
-                                #pragma warn +sus
 
                                 return;
                         }
@@ -1519,12 +1514,10 @@ startplayloop:
 
                         CheckHighScore (gamestate.score,gamestate.mapon+1);
 
-                        #pragma warn -sus
                         #ifndef JAPAN
                         _fstrcpy(MainMenu[viewscores].string,STR_VS);
                         #endif
                         MainMenu[viewscores].routine = CP_ViewScores;
-                        #pragma warn +sus
 
                         return;
 
@@ -1543,12 +1536,10 @@ startplayloop:
 
                         CheckHighScore (gamestate.score,gamestate.mapon+1);
 
-                        #pragma warn -sus
                         #ifndef JAPAN
                         strcpy(MainMenu[viewscores].string,STR_VS);
                         #endif
                         MainMenu[viewscores].routine = CP_ViewScores;
-                        #pragma warn +sus
 
                         return;
 

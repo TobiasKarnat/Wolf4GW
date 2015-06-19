@@ -1,7 +1,6 @@
 // WL_DRAW.C
 
 #include <DOS.H>
-#pragma hdrstop
 
 //#define DEBUGWALLS
 
@@ -598,119 +597,6 @@ void HitVertDoor (void)
 }
 
 //==========================================================================
-
-
-/*
-====================
-=
-= HitHorizPWall
-=
-= A pushable wall in action has been hit
-=
-====================
-*/
-
-void HitHorizPWall (void)
-{
-        int wallpic;
-        int texture,offset;
-
-        texture = (xintercept>>4)&0xfc0;
-        offset = pwallpos<<10;
-        if (ytilestep == -1)
-                yintercept += TILEGLOBAL-offset;
-        else
-        {
-                texture = 0xfc0-texture;
-                yintercept += offset;
-        }
-        
-        if(lasttilehit==tilehit && lastside==0)
-        {
-                if((pixx&3) && texture == lasttexture)
-                {
-                        postwidth++;
-                        wallheight[pixx] = wallheight[pixx-1];
-                        return;
-                }
-                ScalePost();
-                wallheight[pixx] = CalcHeight();
-                postsource+=texture-lasttexture;
-                postwidth=1;
-                postx=pixx;
-                lasttexture=texture;
-                return;
-        }
-
-        if(lastside!=-1) ScalePost();
-
-        lastside=0;
-        lasttilehit=tilehit;
-        lasttexture=texture;
-        wallheight[pixx] = CalcHeight();
-        postx = pixx;
-        postwidth = 1;
-
-        wallpic = horizwall[pwalltile&63];
-
-        postsource = Pages+(wallpic<<12)+texture;
-}
-
-/*
-====================
-=
-= HitVertPWall
-=
-= A pushable wall in action has been hit
-=
-====================
-*/
-
-void HitVertPWall (void)
-{
-        int wallpic;
-        int texture,offset;
-
-        texture = (yintercept>>4)&0xfc0;
-        offset = pwallpos<<10;
-        if (xtilestep == -1)
-        {
-                xintercept += TILEGLOBAL-offset;
-                texture = 0xfc0-texture;
-        }
-        else
-                xintercept += offset;
-                
-        if(lasttilehit==tilehit && lastside==1)
-        {
-                if((pixx&3) && texture == lasttexture)
-                {
-                        postwidth++;
-                        wallheight[pixx] = wallheight[pixx-1];
-                        return;
-                }
-                ScalePost();
-                wallheight[pixx] = CalcHeight();
-                postsource+=texture-lasttexture;
-                postwidth=1;
-                postx=pixx;
-                lasttexture=texture;
-                return;
-        }
-
-        if(lastside!=-1) ScalePost();
-
-        lastside=1;
-        lasttilehit=tilehit;
-        lasttexture=texture;
-        wallheight[pixx] = CalcHeight();
-        postx = pixx;
-        postwidth = 1;
-
-        wallpic = vertwall[pwalltile&63];
-
-        postsource = Pages+(wallpic<<12)+texture;
-}
 
 #define HitHorizBorder HitHorizWall
 #define HitVertBorder HitVertWall

@@ -1,7 +1,6 @@
 // WL_PLAY.C
 
 #include <i86.h>
-#pragma hdrstop
 
 extern byte scanbuffer[16];
 extern int curscanoffs;
@@ -100,9 +99,6 @@ void    PlayLoop (void);
 
 =============================================================================
 */
-
-
-objtype dummyobj;
 
 //
 // LIST OF SONGS FOR EACH VERSION
