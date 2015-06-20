@@ -412,9 +412,8 @@ void SDL_IndicatePC(boolean ind)
 static void
 SDL_SetTimer0(word speed)
 {
-#ifndef TPROF   // If using Borland's profiling, don't screw with the timer
 //      _asm pushfd
-        _asm cli
+        _disable();
 
         outp(0x43,0x36);                                // Change timer 0
         outp(0x40,(byte)speed);
@@ -426,10 +425,7 @@ SDL_SetTimer0(word speed)
                 TimerDivisor = speed;
 
 //      _asm popfd
-        _asm    sti
-#else
-        TimerDivisor = 0x10000;
-#endif
+        _enable();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -629,7 +625,7 @@ SDL_SBPlaySample(byte *data,longword len,boolean inIRQ)
         if(!inIRQ)
         {
 //              _asm    pushfd
-                _asm    cli
+                _disable();
         }
 
         SDL_SBStopSampleInIRQ();
@@ -657,7 +653,7 @@ SDL_SBPlaySample(byte *data,longword len,boolean inIRQ)
         if(!inIRQ)
         {
 //              _asm    popfd
-                _asm    sti
+                _enable();
         }
 
 #ifdef SHOWSDDEBUG
@@ -687,13 +683,13 @@ SDL_PositionSBP(int leftpos,int rightpos)
         v = ((leftpos & 0x0f) << 4) | (rightpos & 0x0f);
 
 //      _asm    pushfd
-        _asm    cli
+        _disable();
 
         sbOut(sbpMixerAddr,sbpmVoiceVol);
         sbOut(sbpMixerData,v);
 
 //      _asm    popfd
-        _asm    sti
+        _enable();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -894,9 +890,9 @@ SDL_StartSB(void)
 static void
 SDL_ShutSB(void)
 {
-        _asm cli
+        _disable();
         SDL_SBStopSampleInIRQ();
-        _asm sti
+        _enable();
 
         if (SBProPresent)
         {
@@ -947,7 +943,7 @@ SDL_SSPlaySample(byte *data,longword len,boolean inIRQ)
         if(!inIRQ)
         {
 //              _asm    pushfd
-                _asm    cli
+                _disable();
         }
 
         ssLengthLeft = len;
@@ -956,7 +952,7 @@ SDL_SSPlaySample(byte *data,longword len,boolean inIRQ)
         if(!inIRQ)
         {
 //              _asm    popfd
-                _asm    sti
+                _enable();
         }
 }
 
@@ -1077,7 +1073,7 @@ SDL_PCPlaySample(byte *data,longword len,boolean inIRQ)
         if(!inIRQ)
         {
 //              _asm    pushfd
-                _asm    cli
+                _disable();
         }
 
         SDL_IndicatePC(true);
@@ -1088,7 +1084,7 @@ SDL_PCPlaySample(byte *data,longword len,boolean inIRQ)
         if(!inIRQ)
         {
 //              _asm    popfd
-                _asm    sti
+                _enable();
         }
 }
 
@@ -1126,14 +1122,14 @@ static void
 SDL_PCPlaySound(PCSound *sound)
 {
 //      _asm    pushfd
-        _asm    cli
+        _disable();
 
         pcLastSample = -1;
         pcLengthLeft = sound->common.length;
         pcSound = sound->data;
 
 //      _asm    popfd
-        _asm    sti
+        _enable();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1149,7 +1145,7 @@ static void
 SDL_PCStopSound(void)
 {
 //      _asm    pushfd
-        _asm    cli
+        _disable();
 
         pcSound = 0;
 
@@ -1158,7 +1154,7 @@ SDL_PCStopSound(void)
         _asm    out     0x61,al
 
 //      _asm    popfd
-        _asm    sti
+        _enable();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -1170,7 +1166,7 @@ static void
 SDL_ShutPC(void)
 {
 //      _asm    pushfd
-        _asm    cli
+        _disable();
 
         pcSound = 0;
 
@@ -1179,7 +1175,7 @@ SDL_ShutPC(void)
         _asm    out     0x61,al
 
 //      _asm    popfd
-        _asm    sti
+        _enable();
 }
 
 void
@@ -1204,7 +1200,7 @@ void
 SD_StopDigitized(void)
 {
 //      _asm    pushfd
-        _asm    cli
+        _disable();
 
         DigiLeft = 0;
         DigiNextAddr = nil;
@@ -1231,7 +1227,7 @@ SD_StopDigitized(void)
         }
 
 //      _asm    popfd
-        _asm    sti
+        _enable();
 
         DigiLastStart = 1;
         DigiLastEnd = 0;
@@ -2131,14 +2127,14 @@ SD_Shutdown(void)
                 SDL_ShutSS();
 
 //      _asm    pushfd
-        _asm    cli
+        _disable();
 
         SDL_SetTimer0(0);
 
         _dos_setvect(8,t0OldService);
 
 //      _asm    popfd
-        _asm    sti
+        _enable();
 
         SD_Started = false;
 }

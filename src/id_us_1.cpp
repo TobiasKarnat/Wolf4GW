@@ -427,7 +427,7 @@ US_LineInput(int x,int y,char *buf,char *def,boolean escok,
 			USL_XORICursor(x,y,s,cursor);
 
 //	_asm	pushf
-	_asm	cli
+	_disable();
 
 		sc = LastScan;
 		LastScan = sc_None;
@@ -435,7 +435,7 @@ US_LineInput(int x,int y,char *buf,char *def,boolean escok,
 		LastASCII = key_None;
 
 //	_asm	popf
-	_asm	sti
+	_enable();
 
 		switch (sc)
 		{
