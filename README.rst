@@ -7,7 +7,7 @@ Wolfenstein 3D for DOS/4GW
 |
 | The source has been patched to compile with Open Watcom V2.
 | Advanced compiler and linker flags have been chosen and verified.
-| Unity build for interprocedural optimization has been enabled.
+| Various optimization to the source code have been made.
 | DOS/4GW has been replaced by DOS/32A 9.1.2 (April 20, 2006).
 | Author: *Tobias Karnat*
 |
