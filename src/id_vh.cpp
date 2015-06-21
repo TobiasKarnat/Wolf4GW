@@ -11,8 +11,6 @@
 #define SCREENXPLUS		(3)
 #define SCREENXDIV		(4)
 
-#define VIEWWIDTH		80
-
 #define PIXTOBLOCK		4		// 16 pixels to an update block
 
 byte	update[UPDATEHIGH][UPDATEWIDE];

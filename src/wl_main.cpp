@@ -27,7 +27,6 @@ extern byte signon[];
 #define FOCALLENGTH     (0x5700l)               // in global coordinates
 #define VIEWGLOBAL      0x10000                 // globals visable flush to wall
 
-#define VIEWWIDTH       256                     // size of view window
 #define VIEWHEIGHT      144
 
 /*
@@ -38,7 +37,10 @@ extern byte signon[];
 =============================================================================
 */
 
-char            str[80],str2[20];
+char            str[80];
+#ifndef SPEAR
+char            str2[20];
+#endif
 int             tedlevelnum;
 boolean tedlevel;
 int             dirangle[9] = {0,ANGLES/8,2*ANGLES/8,3*ANGLES/8,4*ANGLES/8,

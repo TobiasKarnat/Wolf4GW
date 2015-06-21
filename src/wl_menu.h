@@ -136,7 +136,6 @@ int StartCPMusic(int song);
 int  Confirm(char *string);
 void Message(char *string);
 void CheckPause(void);
-void ShootSnd(void);
 void CheckSecretMissions(void);
 void BossKey(void);
 

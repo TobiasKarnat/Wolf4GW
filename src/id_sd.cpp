@@ -156,7 +156,9 @@ static  byte                    alFXReg;
 #define DMABUFFERSIZE 4096
 
 int DMABufferDescriptor=0;
+#ifdef BUFFERDMA
 int DMABufferIndex=0;
+#endif
 byte *DMABuffer;
 
 int count_time=0;

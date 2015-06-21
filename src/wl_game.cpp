@@ -38,7 +38,9 @@ boolean         spearflag;
 //
 // ELEVATOR BACK MAPS - REMEMBER (-1)!!
 //
+#ifndef SPEAR
 int ElevatorBackTo[]={1,1,7,3,5,3};
+#endif
 
 void ScanInfoPlane (void);
 void SetupGameLevel (void);

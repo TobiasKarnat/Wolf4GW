@@ -724,9 +724,14 @@ void ShowArticle (char *article)
 #ifdef ARTSEXTERN
 int     endextern = T_ENDART1;
 #ifndef SPEAR
+#ifndef GOODTIMES
 int             helpextern = T_HELPART;
 #endif
 #endif
+#endif
+#endif
+
+#if defined(ABCAUS) || !defined(ARTSEXTERN)
 char helpfilename[13] = "HELPART.",
          endfilename[13] = "ENDART1.";
 #endif
@@ -739,6 +744,7 @@ char helpfilename[13] = "HELPART.",
 =================
 */
 #ifndef SPEAR
+#ifndef GOODTIMES
 void HelpScreens (void)
 {
         int                     artnum;
@@ -791,6 +797,7 @@ void HelpScreens (void)
 //      MM_SortMem ();
 #endif
 }
+#endif
 #endif
 
 //

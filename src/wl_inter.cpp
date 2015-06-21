@@ -1248,6 +1248,7 @@ void    CheckHighScore (long score,word other)
 
 
 #ifndef UPLOAD
+#ifndef GOODTIMES
 #ifndef SPEAR
 #ifndef JAPAN
 ////////////////////////////////////////////////////////
@@ -1293,6 +1294,7 @@ void NonShareware(void)
         VW_FadeIn();
         IN_Ack();
 }
+#endif
 #endif
 #endif
 #endif

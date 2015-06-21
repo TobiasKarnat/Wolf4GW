@@ -80,7 +80,7 @@ int     lasttexture;
 short focaltx,focalty,viewtx,viewty;
 longword xpartialup,xpartialdown,ypartialup,ypartialdown;
 
-short midangle,angle;
+short midangle;
 
 word tilehit;
 int pixx;
@@ -88,7 +88,6 @@ int pixx;
 short xtile,ytile;
 short xtilestep,ytilestep;
 long xintercept,yintercept;
-word xstep,ystep; // long
 word xspot,yspot;
 int texdelta;
 

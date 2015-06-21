@@ -72,7 +72,9 @@ char extension[5],      // Need a string, not constant to change cache files
      gfilename[10]="VGAGRAPH.",
      gdictname[10]="VGADICT.",
      mheadname[10]="MAPHEAD.",
+#ifndef CARMACIZED
      mfilename[10]="MAPTEMP.",
+#endif
      aheadname[10]="AUDIOHED.",
      afilename[10]="AUDIOT.";
 
@@ -183,8 +185,7 @@ boolean CA_WriteFile (char *filename, void *ptr, long length)
         return true;
 }
 
-
-
+#if !defined(ARTSEXTERN) || !defined(DEMOSEXTERN)
 /*
 ==========================
 =
@@ -213,6 +214,7 @@ boolean CA_LoadFile (char *filename, memptr *ptr)
         close (handle);
         return true;
 }
+#endif
 
 /*
 ============================================================================

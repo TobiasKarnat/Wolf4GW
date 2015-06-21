@@ -55,7 +55,9 @@ CP_iteminfo
         LSItems={LSM_X,LSM_Y,10,0,24},
         CtlItems={CTL_X,CTL_Y,6,-1,56},
         CusItems={8,CST_Y+13*2,9,-1,0},
+#ifndef SPEAR
         NewEitems={NE_X,NE_Y,11,0,88},
+#endif
         NewItems={NM_X,NM_Y,4,2,24};
 
 CP_itemtype MainMenu[]=
@@ -279,8 +281,9 @@ int color_norml[]={
    0x6b
    };
 
+#ifndef SPEAR
 int EpisodeSelect[6]={1};
-
+#endif
 
 int SaveGamesAvail[10],StartGame,SoundStatus=1,pickquick;
 char SaveGameNames[10][32],SaveName[13]="SAVEGAM?.";
@@ -991,7 +994,7 @@ firstpart:
 
         } while (!which);
 
-        ShootSnd();
+        SD_PlaySound(SHOOTSND);
 
         //
         // ALREADY IN A GAME?
@@ -1042,7 +1045,7 @@ firstpart:
                 #endif
         }
 
-        ShootSnd();
+        SD_PlaySound(SHOOTSND);
         NewGame(which,episode);
         StartGame=1;
         MenuFadeOut();
@@ -1197,7 +1200,7 @@ int CP_Sound(int)
                                         SD_SetSoundMode(sdm_PC);
                                         CA_LoadAllSounds();
                                         DrawSoundMenu();
-                                        ShootSnd();
+                                        SD_PlaySound(SHOOTSND);
                                 }
                                 break;
                         case 2:
@@ -1207,7 +1210,7 @@ int CP_Sound(int)
                                         SD_SetSoundMode(sdm_AdLib);
                                         CA_LoadAllSounds();
                                         DrawSoundMenu();
-                                        ShootSnd();
+                                        SD_PlaySound(SHOOTSND);
                                 }
                                 break;
 
@@ -1226,7 +1229,7 @@ int CP_Sound(int)
                                 {
                                         SD_SetDigiDevice(sds_SoundSource);
                                         DrawSoundMenu();
-                                        ShootSnd();
+                                        SD_PlaySound(SHOOTSND);
                                 }
                                 break;
                         case 7:
@@ -1234,7 +1237,7 @@ int CP_Sound(int)
                                 {
                                         SD_SetDigiDevice(sds_SoundBlaster);
                                         DrawSoundMenu();
-                                        ShootSnd();
+                                        SD_PlaySound(SHOOTSND);
                                 }
                                 break;
 
@@ -1246,7 +1249,7 @@ int CP_Sound(int)
                                 {
                                         SD_SetMusicMode(smm_Off);
                                         DrawSoundMenu();
-                                        ShootSnd();
+                                        SD_PlaySound(SHOOTSND);
                                 }
                                 break;
                         case 11:
@@ -1254,7 +1257,7 @@ int CP_Sound(int)
                                 {
                                         SD_SetMusicMode(smm_AdLib);
                                         DrawSoundMenu();
-                                        ShootSnd();
+                                        SD_PlaySound(SHOOTSND);
                                         StartCPMusic(MENUSONG);
                                 }
                                 break;
@@ -1447,7 +1450,7 @@ int CP_LoadGame(int quick)
                 which=HandleMenu(&LSItems,&LSMenu[0],TrackWhichGame);
                 if (which>=0 && SaveGamesAvail[which])
                 {
-                        ShootSnd();
+                        SD_PlaySound(SHOOTSND);
                         name[7]=which+'0';
 
                         handle=open(name,O_BINARY);
@@ -1460,7 +1463,7 @@ int CP_LoadGame(int quick)
                         close(handle);
 
                         StartGame=1;
-                        ShootSnd();
+                        SD_PlaySound(SHOOTSND);
                         //
                         // CHANGE "READ THIS!" TO NORMAL COLOR
                         //
@@ -1629,7 +1632,7 @@ int CP_SaveGame(int quick)
                                         VW_UpdateScreen();
                                 }
 
-                        ShootSnd();
+                        SD_PlaySound(SHOOTSND);
 
                         strcpy(input,&SaveGameNames[which][0]);
                         name[7]=which+'0';
@@ -1655,7 +1658,7 @@ int CP_SaveGame(int quick)
 
                                 close(handle);
 
-                                ShootSnd();
+                                SD_PlaySound(SHOOTSND);
                                 exit=1;
                         }
                         else
@@ -1805,7 +1808,7 @@ int CP_Control(int)
                                 Mouse(4);
                                 DrawCtlScreen();
                                 CusItems.curpos=-1;
-                                ShootSnd();
+                                SD_PlaySound(SHOOTSND);
                                 break;
 
                         case JOYENABLE:
@@ -1815,19 +1818,19 @@ int CP_Control(int)
                                                 joystickenabled = 0;
                                 DrawCtlScreen();
                                 CusItems.curpos=-1;
-                                ShootSnd();
+                                SD_PlaySound(SHOOTSND);
                                 break;
 
                         case USEPORT2:
                                 joystickport^=1;
                                 DrawCtlScreen();
-                                ShootSnd();
+                                SD_PlaySound(SHOOTSND);
                                 break;
 
                         case PADENABLE:
                                 joypadenabled^=1;
                                 DrawCtlScreen();
-                                ShootSnd();
+                                SD_PlaySound(SHOOTSND);
                                 break;
 
                         case MOUSESENS:
@@ -2155,7 +2158,7 @@ void EnterCtrlData(int index,CustomCtrls *cust,void (*DrawRtn)(int),void (*Print
  ControlInfo ci;
 
 
- ShootSnd();
+ SD_PlaySound(SHOOTSND);
  PrintY=CST_Y+13*index;
  IN_ClearKeysDown();
  exit=0;
@@ -2300,7 +2303,7 @@ void EnterCtrlData(int index,CustomCtrls *cust,void (*DrawRtn)(int),void (*Print
            {
         buttonscan[order[which]]=LastScan;
         picked=1;
-        ShootSnd();
+        SD_PlaySound(SHOOTSND);
         IN_ClearKeysDown();
            }
            break;
@@ -2310,7 +2313,7 @@ void EnterCtrlData(int index,CustomCtrls *cust,void (*DrawRtn)(int),void (*Print
            {
         dirscan[moveorder[which]]=LastScan;
         picked=1;
-        ShootSnd();
+        SD_PlaySound(SHOOTSND);
         IN_ClearKeysDown();
            }
            break;
@@ -2810,7 +2813,7 @@ int CP_ChangeView(int)
                 NewViewSize(newview);
         }
 
-        ShootSnd();
+        SD_PlaySound(SHOOTSND);
         MenuFadeOut();
         
         return 0;
@@ -3359,7 +3362,7 @@ int HandleMenu(CP_iteminfo *item_i,CP_itemtype *items,void (*routine)(int w))
                         //
                         if ((items+which)->routine!=NULL)
                         {
-                                ShootSnd();
+                                SD_PlaySound(SHOOTSND);
                                 MenuFadeOut();
                                 (items+which)->routine(0);
                         }
@@ -3661,14 +3664,14 @@ int Confirm(char *string)
 /*      _asm mov eax,3
         _asm int 0x10
 
-        printf("Vor ShootSnd()\n");
+        printf("Vor SD_PlaySound(SHOOTSND)\n");
         IN_Ack();*/
 
         #ifdef SPANISH
         if (Keyboard[sc_S])
         {
                 xit=1;
-                ShootSnd();
+                SD_PlaySound(SHOOTSND);
         }
 
         while(Keyboard[sc_S] || Keyboard[sc_N] || Keyboard[sc_Escape]);
@@ -3678,7 +3681,7 @@ int Confirm(char *string)
         if (Keyboard[sc_Y])
         {
                 xit=1;
-                ShootSnd();
+                SD_PlaySound(SHOOTSND);
         }
 
         while(Keyboard[sc_Y] || Keyboard[sc_N] || Keyboard[sc_Escape]);
@@ -3730,7 +3733,7 @@ int GetYorN(int x,int y,int pic)
         if (Keyboard[sc_S])
         {
                 xit=1;
-                ShootSnd();
+                SD_PlaySound(SHOOTSND);
         }
 
         while(Keyboard[sc_S] || Keyboard[sc_N] || Keyboard[sc_Escape]);
@@ -3740,7 +3743,7 @@ int GetYorN(int x,int y,int pic)
         if (Keyboard[sc_Y])
         {
                 xit=1;
-                ShootSnd();
+                SD_PlaySound(SHOOTSND);
         }
 
         while(Keyboard[sc_Y] || Keyboard[sc_N] || Keyboard[sc_Escape]);
@@ -3897,11 +3900,6 @@ void DrawStripes(int y)
         VWB_Bar(0,y,320,22,0);
         VWB_Hlin(0,319,y+23,0);
 #endif
-}
-
-void ShootSnd(void)
-{
-        SD_PlaySound(SHOOTSND);
 }
 
 

@@ -29,7 +29,6 @@ typedef	struct
 		} HighScore;
 
 #define	MaxGameName		32
-#define	MaxSaveGames	6
 typedef	struct
 		{
 			char	signature[4];
@@ -75,7 +74,6 @@ extern void				(*USL_DrawString)(char *);
 
 extern	boolean		(*USL_SaveGame)(int),(*USL_LoadGame)(int);
 extern	void		(*USL_ResetGame)(void);
-extern	SaveGame	Games[MaxSaveGames];
 extern	HighScore	Scores[];
 
 #define	US_HomeWindow()	{PrintX = WindowX; PrintY = WindowY;}
