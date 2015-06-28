@@ -1124,11 +1124,9 @@ void    FixOfs (void)
 //#define DEBUGRAYTRACER
 
 #ifdef DEBUGRAYTRACER
-#define LOGF if(dolog) fprintf
 #define MARKPIX(y,col) VGAMAPMASK(1<<(pixx&3)); \
 	vbuf[(pixx>>2)+(y)*80]=(col);
 #else
-#define LOGF 0 &&
 #define MARKPIX(y,col)
 #endif
 
@@ -1281,7 +1279,9 @@ vertentry:
          		               xintercept=(xtile<<TILESHIFT)+TILEGLOBAL-(pwallposinv<<10);
       	      	            yintercept=yintbuf;
 										tilehit=pwalltile;
-									   LOGF(log,"Pushwall hit 1: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									   if(dolog) fprintf(log,"Pushwall hit 1: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	         HitVertWall();
 									}
 									else
@@ -1295,7 +1295,9 @@ vertentry:
          		               xintercept=(xtile<<TILESHIFT)-(pwallposinv<<10);
       	      	            yintercept=yintbuf;
 										tilehit=pwalltile;
-									   LOGF(log,"Pushwall hit 2: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									   if(dolog) fprintf(log,"Pushwall hit 2: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	         HitVertWall();
 									}
 								}
@@ -1314,14 +1316,18 @@ vertentry:
 												
 										   MARKPIX(5,15);
 
-									      LOGF(log,"Pushwall hit 3: HitHorizWall old values:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									      if(dolog) fprintf(log,"Pushwall hit 3: HitHorizWall old values:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 											if(pwalldir==di_south)
 											   yintercept=(yintercept&0xffff0000)+(pwallposi<<10);
 											else
 											   yintercept=(yintercept&0xffff0000)-TILEGLOBAL+(pwallposi<<10);
      		      	               xintercept=xintercept-((xstep*(63-pwallpos))>>6);
 											tilehit=pwalltile;
-									      LOGF(log,"Pushwall hit 3: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									      if(dolog) fprintf(log,"Pushwall hit 3: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	            HitHorizWall();
 										}
 										else
@@ -1331,7 +1337,9 @@ vertentry:
 									      texdelta = -(pwallposi<<10);
 											xintercept=xtile<<TILESHIFT;
 											tilehit=pwalltile;
-									      LOGF(log,"Pushwall hit 4: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									      if(dolog) fprintf(log,"Pushwall hit 4: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 											HitVertWall();
 										}
 									}
@@ -1344,7 +1352,9 @@ vertentry:
 									      texdelta = -(pwallposi<<10);
 											xintercept=xtile<<TILESHIFT;
 											tilehit=pwalltile;
-										   LOGF(log,"Pushwall hit 5: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+										   if(dolog) fprintf(log,"Pushwall hit 5: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 											HitVertWall();
 										}
 										else
@@ -1361,7 +1371,9 @@ vertentry:
 											   yintercept=(yintercept&0xffff0000)+((63-pwallpos)<<10);
      		      	               xintercept=xintercept-((xstep*pwallpos)>>6);
 											tilehit=pwalltile;
-										   LOGF(log,"Pushwall hit 6: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+										   if(dolog) fprintf(log,"Pushwall hit 6: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	            HitHorizWall();
 										}
 									}
@@ -1370,7 +1382,9 @@ vertentry:
                     else
                     {
                         xintercept=xtile<<TILESHIFT;
-							   LOGF(log,"HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#ifdef DEBUGRAYTRACER
+							   if(dolog) fprintf(log,"HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#endif
                         HitVertWall();
                     }
                 }
@@ -1381,7 +1395,9 @@ passvert:
             xtile+=xtilestep;
             yintercept+=ystep;
             xspot=(xtile<<mapshift)+*((word *)&yintercept+1);
-			   LOGF(log,"passvert:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#ifdef DEBUGRAYTRACER
+			   if(dolog) fprintf(log,"passvert:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#endif
         }
         while(1);
 #ifdef DEBUGRAYTRACER
@@ -1454,7 +1470,9 @@ horizentry:
          		               yintercept=(ytile<<TILESHIFT)+TILEGLOBAL-(pwallposinv<<10);
       	      	            xintercept=xintbuf;
 										tilehit=pwalltile;
-									   LOGF(log,"Pushwall hit 7: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									   if(dolog) fprintf(log,"Pushwall hit 7: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	         HitHorizWall();
 									}
 									else
@@ -1468,7 +1486,9 @@ horizentry:
          		               yintercept=(ytile<<TILESHIFT)-(pwallposinv<<10);
       	      	            xintercept=xintbuf;
 										tilehit=pwalltile;
-									   LOGF(log,"Pushwall hit 8: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									   if(dolog) fprintf(log,"Pushwall hit 8: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%i\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	         HitHorizWall();
 									}
 								}
@@ -1487,7 +1507,9 @@ horizentry:
 												
 										   MARKPIX(3,15);
 
-									      LOGF(log,"Pushwall hit 9: HitVertWall old values:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									      if(dolog) fprintf(log,"Pushwall hit 9: HitVertWall old values:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 
 											if(pwalldir==di_east)
 											   xintercept=(xintercept&0xffff0000)+(pwallposi<<10);
@@ -1495,7 +1517,9 @@ horizentry:
 											   xintercept=(xintercept&0xffff0000)-TILEGLOBAL+(pwallposi<<10);
      		      	               yintercept=yintercept-((ystep*(63-pwallpos))>>6);
 											tilehit=pwalltile;
-									      LOGF(log,"Pushwall hit 9: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+									      if(dolog) fprintf(log,"Pushwall hit 9: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	            HitVertWall();
 										}
 										else
@@ -1505,7 +1529,9 @@ horizentry:
 									      texdelta = -(pwallposi<<10);
 											yintercept=ytile<<TILESHIFT;
 											tilehit=pwalltile;
-										   LOGF(log,"Pushwall hit 10: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+										   if(dolog) fprintf(log,"Pushwall hit 10: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 											HitHorizWall();
 										}
 									}
@@ -1518,7 +1544,9 @@ horizentry:
 									      texdelta = -(pwallposi<<10);
 											yintercept=ytile<<TILESHIFT;
 											tilehit=pwalltile;
-										   LOGF(log,"Pushwall hit 11: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+										   if(dolog) fprintf(log,"Pushwall hit 11: HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 											HitHorizWall();
 										}
 										else
@@ -1535,7 +1563,9 @@ horizentry:
 											   xintercept=(xintercept&0xffff0000)+((63-pwallpos)<<10);
      		      	               yintercept=yintercept-((ystep*pwallpos)>>6);
 											tilehit=pwalltile;
-										   LOGF(log,"Pushwall hit 12: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#ifdef DEBUGRAYTRACER
+										   if(dolog) fprintf(log,"Pushwall hit 12: HitVertWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n  pwallpos=%.4X\n",xintercept,xtile,yintercept,ytile,pwallpos);
+#endif
 	               	            HitVertWall();
 										}
 									}
@@ -1544,7 +1574,9 @@ horizentry:
                     else
                     {
                         yintercept=ytile<<TILESHIFT;
-							   LOGF(log,"HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#ifdef DEBUGRAYTRACER
+							   if(dolog) fprintf(log,"HitHorizWall:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#endif
                         HitHorizWall();
                     }
                 }
@@ -1555,7 +1587,9 @@ passhoriz:
             ytile+=ytilestep;
             xintercept+=xstep;
             yspot=(*((word *)&xintercept+1)<<mapshift)+ytile;
-			   LOGF(log,"passhoriz:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#ifdef DEBUGRAYTRACER
+			   if(dolog) fprintf(log,"passhoriz:\n  xintercept=%.8X  xtile=%.4X\n  yintercept=%.8X  ytile=%.4X\n",xintercept,xtile,yintercept,ytile);
+#endif
         }
         while(1);
 #ifdef DEBUGRAYTRACER
