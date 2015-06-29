@@ -107,4 +107,8 @@ extern	int		US_CheckParm(char *parm,char **strings);
 
 		void	USL_PrintInCenter(char *s,Rect r);
 		char 	*USL_GiveSaveName(word game);
+
+void            US_InitRndT(int randomize);
+int             US_RndT();
+
 #endif

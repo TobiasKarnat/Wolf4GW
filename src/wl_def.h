@@ -1403,16 +1403,6 @@ byte my_inp(int port);
 
 #define inp(a) my_inp(a)
 
-extern "C"
-{
-        void US_InitRndT(int randomize);
-        #pragma aux US_InitRndT parm [EAX] modify exact [ax cx edx]
-
-        int US_RndT();
-        #pragma aux US_RndT value [EAX] modify exact [eax ebx]
-}
-
-
 extern byte fontcolor,backcolor;
 
 #define SETFONTCOLOR(f,b) fontcolor=f;backcolor=b;
