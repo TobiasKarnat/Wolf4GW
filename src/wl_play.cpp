@@ -702,8 +702,8 @@ void CheckKeys (void)
 #else
         if (Keyboard[sc_BackSpace] &&
                 Keyboard[sc_LShift] &&
-                Keyboard[sc_Alt] &&
-                MS_CheckParm("debugmode"))
+                Keyboard[sc_Alt]/* &&
+                MS_CheckParm("debugmode")*/)
 #endif
         {
          ClearMemory ();
