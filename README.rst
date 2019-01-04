@@ -11,7 +11,7 @@ Wolfenstein 3D for DOS/4GW
 | DOS/4GW has been replaced by DOS/32A 9.1.2 (April 20, 2006).
 | Author: *Tobias Karnat*
 |
-This version will compile under Open Watcom C/C++ V2.0 beta (April 2015).
+This version will compile under Open Watcom C/C++ V2.0 beta (Jan 2019 or April 2015).
 
 RELEASE.TXT
 -----------
